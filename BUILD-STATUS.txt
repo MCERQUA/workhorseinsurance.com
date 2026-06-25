@@ -1,0 +1,62 @@
+workhorseinsurance.com — BUILD STATUS
+=====================================
+
+NICHE: Insurance for commercial work-truck & fleet operators — service trucks,
+utility/box trucks, contractor work trucks, and small commercial fleets. Framed
+around the work-truck/fleet business owner. Generic commercial vehicles (no brand).
+
+BUILD: flock -w 3600 /tmp/.webtop-build.lock bash -c "pnpm install; next build"
+=> EXIT CODE 0. .next/BUILD_ID present = true.
+Note: used "pnpm install; next build" (NOT "&&") because pnpm install exits 1 on
+ERR_PNPM_IGNORED_BUILDS (sharp); "&&" would skip the build. Reported exit is
+next build's own.
+Framework: Next.js 15 (App Router, SSG). Build config inherited unchanged
+(pnpm-only, command="pnpm run build", NODE_VERSION 20, NO packageManager field).
+
+ROUTES: 24 prerendered pages
+  Static: /, /about, /blog, /contact, /privacy, /quote, /services, /terms,
+          /robots.txt, /sitemap.xml, /_not-found
+  Services (7, SSG /services/[slug]):
+    - commercial-auto-insurance
+    - hired-non-owned-auto-insurance
+    - general-liability-insurance
+    - motor-truck-cargo-insurance
+    - physical-damage-insurance
+    - tools-equipment-insurance
+    - workers-compensation-insurance
+  Blog (4, SSG /blog/[slug], all 750+ words):
+    - work-truck-insurance-guide (1046 words)
+    - hired-non-owned-auto-explained (963 words)
+    - motor-truck-cargo-coverage (975 words)
+    - fleet-safety-and-lowering-premiums (969 words)
+
+IMAGES: 9 real FLUX (FLUX.1-schnell) images in public/images/, each >10KB:
+  hero-work-truck.jpg, fleet-lineup.jpg, utility-truck.jpg, cargo-loading.jpg,
+  service-van.jpg, tools-rack.jpg, about-agent.jpg, blog-default.jpg, og-image.jpg.
+  Generic commercial vehicles (no brand/logo). All 6 old framing images deleted.
+
+FORMS: Netlify Forms markers — NEVER a direct WEBHOOK fetch.
+  - contact form: name="contact", data-netlify="true",
+    data-netlify-honeypot="bot-field", hidden form-name input, bot-field honeypot,
+    submit via fetch("/", URLSearchParams).
+  - quote form:   name="quote",   data-netlify="true",
+    data-netlify-honeypot="bot-field", hidden form-name input, bot-field honeypot,
+    submit via fetch("/", URLSearchParams) — rewritten off the template's direct
+    WEBHOOK_URL fetch. grep WEBHOOK_URL/fetch(WEBHOOK in src/ = 0.
+  netlify.toml submission_created notifications route both forms to host webhook
+  with site=workhorseinsurance.com.
+
+CONTACT (canonical, verified — not fabricated):
+  Phone 844-967-5247 (tel:+18449675247)
+  Email josh@contractorschoiceagency.com
+  HQ 12220 E Riggs Road, Suite #105, Chandler, AZ 85249
+
+TESTIMONIALS: REMOVED ENTIRELY (TESTIMONIALS array deleted from site.ts;
+  Testimonials.tsx deleted; <Testimonials /> removed from homepage).
+
+SEO: sitemap.ts, robots.ts, and public/llms.txt all use
+  https://workhorseinsurance.com with work-truck/fleet keywords.
+  JSON-LD InsuranceAgency schema via SITE config in layout.tsx.
+
+GATES: grep 'fram' (minus SmoothScroll/requestAnimationFrame) = 0;
+  grep WEBHOOK_URL/fetch(WEBHOOK = 0; no site=framinginsurance anywhere.
