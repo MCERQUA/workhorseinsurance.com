@@ -49,7 +49,7 @@ FORMS: Netlify Forms markers — NEVER a direct WEBHOOK fetch.
 CONTACT (canonical, verified — not fabricated):
   Phone 844-967-5247 (tel:+18449675247)
   Email josh@contractorschoiceagency.com
-  HQ 12220 E Riggs Road, Suite #105, Chandler, AZ 85249
+  HQ 12220 E Riggs Road, Suite #104, Chandler, AZ 85249
 
 TESTIMONIALS: REMOVED ENTIRELY (TESTIMONIALS array deleted from site.ts;
   Testimonials.tsx deleted; <Testimonials /> removed from homepage).
